@@ -1,13 +1,8 @@
 # Use the official NGINX image as base
-FROM nginx:latest
+FROM nginx
 
-# Remove the default NGINX configuration file
-RUN rm /etc/nginx/conf.d/default.conf
+# Copy package.json and package-lock.json to the working directory
+COPY ./public /usr/share/nginx/html
 
-# Copy custom NGINX configuration file
-COPY nginx.conf /etc/nginx/conf.d/
-
-# Copy website files into the public folder
-COPY public /usr/share/nginx/html
-
+# Expose the port the app runs on
 EXPOSE 80
